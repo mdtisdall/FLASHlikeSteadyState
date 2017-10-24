@@ -3,8 +3,6 @@
 
 #include "blas_local.h"
 
-#include <iostream>
-
 template <typename vec_type>
 class StructuredLUSolver
 {
@@ -45,16 +43,6 @@ class StructuredLUSolver
           uIt++;
           uTrailingIt++;
         }
-      }
-
-      {
-        std::cout << "y: ";
-        for(
-          typename vec_type::iterator yIt = y.begin(); yIt != y.end(); yIt++)
-        {
-          std::cout << *yIt << ", ";
-        }
-        std::cout << std::endl;
       }
 
       {
