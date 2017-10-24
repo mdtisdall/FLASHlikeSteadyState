@@ -28,10 +28,10 @@ class SequenceEventVectors {
         }
         
         virtual void operator()(
-          typename vec_type::iterator longIt,
+          typename vec_type::iterator *longIt,
           vec_type*) const
         {
-          longIt++;
+          (*longIt)++;
         }
 
       protected:
@@ -52,11 +52,11 @@ class SequenceEventVectors {
         using Excitation::operator();
 
         virtual void operator()(
-          typename vec_type::iterator longIt,
+          typename vec_type::iterator *longIt,
           vec_type *transverse) const
         {
-          transverse->push_back(*longIt * sinFlipAngle);
-          longIt++;
+          transverse->push_back(**longIt * sinFlipAngle);
+          (*longIt)++;
         }
 
       protected:
@@ -78,9 +78,9 @@ class SequenceEventVectors {
         }
         
         void operator()(
-          typename vec_type::iterator longIt,
+          typename vec_type::iterator *longIt,
           vec_type*) const {
-          longIt++;
+          (*longIt)++;
         }
 
       protected:

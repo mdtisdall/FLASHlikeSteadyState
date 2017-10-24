@@ -49,12 +49,34 @@ int main() {
   }
 
   solver(&(seqVecs.a), &(seqVecs.b), &m);
-
-  std::cout << "m: ";
-  for(vec_type::iterator mIt = m.begin(); mIt != m.end(); mIt++) {
-    std::cout << *mIt << ", ";
+  
+  {
+    std::cout << "m: ";
+    for(vec_type::iterator mIt = m.begin(); mIt != m.end(); mIt++) {
+      std::cout << *mIt << ", ";
+    }
+    std::cout << std::endl;
   }
-  std::cout << std::endl;
+
+  vec_type longitudinal(m.size());
+
+  longitudinal[0] = m[m.size()-1];
+
+  BLAS::copy(m.size() - 1, m.data(), 1, longitudinal.data() + 1, 1);
+
+  vec_type trans;
+
+  vec_type::iterator longIt = longitudinal.begin();
+
+  mprage(&longIt, &trans);
+  
+  {
+    std::cout << "trans: ";
+    for(vec_type::iterator tIt = trans.begin(); tIt != trans.end(); tIt++) {
+      std::cout << *tIt << ", ";
+    }
+    std::cout << std::endl;
+  }
   
   return 0;
 }

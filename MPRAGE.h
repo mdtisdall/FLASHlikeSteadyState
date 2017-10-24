@@ -19,17 +19,19 @@ class MPRAGE {
      ,inversion(180, td1_ms)
      ,td2Relaxation(td2_ms)
     {}
-
-    void operator()(SequenceEventVectors *vecs)
+ 
+    template<typename... Ts>
+    void operator()(Ts... args) const
     {
-      inversion(vecs);
+      inversion(args...);
 
       for(unsigned int innerStep = 0; innerStep < innerSteps; innerStep++) {
-         excitationWithReadout(vecs); 
+         excitationWithReadout(args...); 
       }
       
-      td2Relaxation(vecs);
+      td2Relaxation(args...);
     }
+  
   protected:
     const unsigned int innerSteps;
     typename SequenceEventVectors::ExcitationWithReadout excitationWithReadout;
