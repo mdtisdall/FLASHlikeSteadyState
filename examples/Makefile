@@ -11,7 +11,7 @@ CXXFLAGS += -g
 # Flags passed to the C++ compiler.
 CXXFLAGS += -Wall -Wextra -pthread -std=c++14
 CXXFLAGS += -DMKL_DIRECT_CALL_SEQ
-#CXXFLAGS += -I~/Documents/Research/In_Prep/MPRAGE/3DEPG
+CXXFLAGS += -I../
 
 #LDFLAGS += -L ~/lib
 LDLIBS += ${MKLROOT}/lib/libmkl_intel_ilp64.a
@@ -21,8 +21,8 @@ LDFLAGS += -lpthread -lm -ldl
 
 all : test 
 
-test : blas_local_MKL.o mkl_ops_mkl.o
+test : ../blas_local_MKL.o ../mkl_ops_mkl.o
 
 clean:
-	rm *.o
+	rm -rf *.o
 	rm -rf test

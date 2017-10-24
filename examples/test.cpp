@@ -26,38 +26,8 @@ int main() {
 
   vec_type m(seqVecs.a.size());
   
-  {
-    std::cout << "a: ";
-    for(
-      typename vec_type::iterator aIt =
-        seqVecs.a.begin(); aIt != seqVecs.a.end(); aIt++)
-    {
-      std::cout << *aIt << ", ";
-    }
-    std::cout << std::endl;
-  }
-  
-  {
-    std::cout << "b: ";
-    for(
-      typename vec_type::iterator bIt =
-        seqVecs.b.begin(); bIt != seqVecs.b.end(); bIt++)
-    {
-      std::cout << *bIt << ", ";
-    }
-    std::cout << std::endl;
-  }
-
   solver(&(seqVecs.a), &(seqVecs.b), &m);
   
-  {
-    std::cout << "m: ";
-    for(vec_type::iterator mIt = m.begin(); mIt != m.end(); mIt++) {
-      std::cout << *mIt << ", ";
-    }
-    std::cout << std::endl;
-  }
-
   vec_type longitudinal(m.size());
 
   longitudinal[0] = m[m.size()-1];
